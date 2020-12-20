@@ -328,7 +328,7 @@ model.save('EUR_USD_1_Day_Forecast_2.h5')
 print("Model saved to disk: EUR_USD_1_Day_Forecast_2.h5")
 
 #Read the bank data in pandas dataframe
-bank_data = pandas.read_csv('.\\data\\bank_data.csv',sep=';')
+bank_data = pandas.read_csv('.\\bank_data.csv',sep=';')
 
 #Show all columns 
 # pandas.set_option('display.max_columns', None)
