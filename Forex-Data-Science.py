@@ -328,10 +328,10 @@ model.save('EUR_USD_1_Day_Forecast_2.h5')
 print("Model saved to disk: EUR_USD_1_Day_Forecast_2.h5")
 
 #Read the bank data in pandas dataframe
-bank_data = pandas.read_csv('.\\bank_data.csv',sep=';')
+bank_data = pd.read_csv('.\\bank_data.csv',sep=';')
 
 #Show all columns 
-# pandas.set_option('display.max_columns', None)
+# pd.set_option('display.max_columns', None)
 
 bank_data.head()
 
@@ -351,21 +351,31 @@ bank_data.shape
 
 #Extract features form the dataset
 X = bank_data.iloc[:, :7]
-X = pandas.get_dummies(bank_data.iloc[:, :7]).values
+X = pd.get_dummies(bank_data.iloc[:, :7]).values
 
 #Extract class
 Y = bank_data.iloc[:, 8:].values
+labels = np.unique(Y)
+print (labels)
 
-#Split the data in training and test set
-X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.10)
+#Split the data in training and test set, 41188
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=10000)
 
 #Create object of logistic regression
-logistic_regression = LogisticRegression()
+logistic_regression = LogisticRegression(max_iter=10000)
 
 #Over sampling using SMOTE algorithm
-smote_object = SMOTE(random_state=4)
+smote_object = SMOTE(sampling_strategy='auto',k_neighbors=1,random_state=2)
 X_res, y_res = smote_object.fit_sample(X_train, Y_train)
 
+#.format ()
+plt.title('Dataset balanced with synthetic or SMOTE\'d data ({} neighbors)')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.scatter(X_res[:, 0], X_res[:, 1], marker='o', c=y_res,
+           s=25, edgecolor='k', cmap=plt.cm.coolwarm)
+plt.show()
+          
 #Fit the model
 logistic_regression.fit(X_res,y_res)
 
@@ -373,9 +383,10 @@ logistic_regression.fit(X_res,y_res)
 Y_pred = logistic_regression.predict(X_test)
 
 #Get accuracy on test data
-accuracy_score(Y_test,Y_pred)
+# accuracy_score(Y_test,Y_pred)
 
-print("Accuracy estimated for FASTBIZ customer data")
+print("Accuracy estimated for FASTBIZ customer data is %f" % accuracy_score(Y_test,Y_pred))
+
 
 
 
