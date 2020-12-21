@@ -38,3 +38,25 @@ Secret key: b535cfb7-c2f3-42f4-a623-2e9f7292d014
 4. Enter the execution mode, in case of a simple demonstration open the command prompt
 window, type python Forex-Data-Science.py
 
+The following errors are being reported for your sample application as on 21/12/2020 7:21 AM IST
+
+C:\2020\FASTBIZ\FASTBIZ-main>python Forex-Data-Science.py
+c0a9d668-0a66-4191-93e9-3f0f3ded6220
+b535cfb7-c2f3-42f4-a623-2e9f7292d014
+c0a9d668-0a66-4191-93e9-3f0f3ded6220
+b535cfb7-c2f3-42f4-a623-2e9f7292d014
+{'error': 'unauthorized_client', 'error_description': 'INVALID_CREDENTIALS: Inva
+lid client credentials'}
+Dates Sample:  ['2020-12-21', '2020-12-20', '2020-12-19', '2020-12-18', '2020-12
+-17', '2020-12-16', '2020-12-15', '2020-12-14', '2020-12-13', '2020-12-12']
+Retrieving data from the API server. Please be patient, there are 20 years of da
+ta!
+c0a9d668-0a66-4191-93e9-3f0f3ded6220
+b535cfb7-c2f3-42f4-a623-2e9f7292d014
+{'error': 'unauthorized_client', 'error_description': 'INVALID_CREDENTIALS: Inva
+lid client credentials'}
+Traceback (most recent call last):
+  File "Forex-Data-Science.py", line 137, in <module>
+    usd = dta["rates"]["USD"]
+KeyError: 'rates'
+  
